@@ -14,25 +14,29 @@ import RxDataSources
 class RecipesViewModel {
     //State
     var recipes: BehaviorRelay<[Recipe]> = .init(value: [])
-    var listItems: BehaviorRelay<[RecipesCellViewModel]> = .init(value: [])
+    private let disposeBag = DisposeBag()
     //Dependency
     let recipeRepository = RecipeRepository()
-    //DisposeBag
-    private let disposeBag = DisposeBag()
-    //
+    //Presentation
+    var listItems: BehaviorRelay<[RecipesCellViewModel]> = .init(value: [])
     //transform
     func transform() {
         print("--Inside ViewModel--")
         //read list of recipe from RecipeRepository
         //and set it to varible 'recipe'
-        recipeRepository.getRecipeList().subscribe{ [self] event in
-            self.recipes.accept(event)
-           
-          }
+        recipeRepository.getRecipeList()
+            .subscribe{ [self] recipe in
+                self.recipes.accept(recipe)
+            }.disposed(by: disposeBag)
+        recipeRepository.mapRecipeListToModel(recipeList: recipes)
+            .subscribe{
+                [self] element in
+                listItems.accept(element)
+            }.disposed(by: disposeBag)
+            
+        
+      
         //setup changes from variable 'recipe' and map it into 'listItems'
     }
-    
-    
-    
-    
+
 }

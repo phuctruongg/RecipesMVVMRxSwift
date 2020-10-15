@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
                 self.window = UIWindow(windowScene: windowScene)
                 let storyBoard = UIStoryboard(name: "Recipe", bundle: nil)
-                let initialViewController = storyBoard.instantiateViewController(withIdentifier: "Home")
+                let initialViewController = storyBoard.instantiateViewController(withIdentifier: "Route")
                 self.window?.rootViewController = initialViewController
                 self.window!.makeKeyAndVisible()
             }
