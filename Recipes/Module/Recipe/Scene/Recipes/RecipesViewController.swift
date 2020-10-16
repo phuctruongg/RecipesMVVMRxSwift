@@ -45,9 +45,38 @@ class RecipesViewController: UIViewController {
         .disposed(by: disposeBag)
     }
     
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Add",
+            let addViewController = segue.destination as? RecipeAddViewController
+        {
+            addViewController.viewModel = RecipeAddViewModel()
+            addViewController.addRecipe.asObserver().subscribe{ [self]
+                element in
+                viewmodel.recipeRepository.addRecipe(element, list: viewmodel.recipes)
+            }.disposed(by: disposeBag)
+        }
+
+//        if segue.identifier == "friendToUpdateFriend",
+//            let destinationViewController = segue.destination as? FriendViewController,
+//            let viewModel = selectFriendPayload.read()
+//        {
+//            destinationViewController.viewModel = UpdateFriendViewModel(friendCellViewModel: viewModel)
+//            destinationViewController.updateFriends.asObserver().subscribe(onNext: { [weak self] () in
+//                self?.viewModel.getFriends()
+//                }, onCompleted: {
+//                    print("ONCOMPLETED")
+//            }).disposed(by: destinationViewController.disposeBag)
+//        }
+    }
+    
+    
+    
     func routeToDetail(intent : RecipesListTableViewCell){
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! RecipeDetailViewController
-        vc.recipeIntent = intent
-        self.navigationController?.pushViewController(vc, animated: true)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Recipe", bundle: nil)
+        let detailView = storyBoard.instantiateViewController(withIdentifier: "Detail") as! RecipeDetailViewController
+        detailView.modalPresentationStyle = .fullScreen
+        detailView.recipeIntent = intent
+        self.navigationController?.pushViewController(detailView, animated: true)
+
     }
 }

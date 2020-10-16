@@ -28,15 +28,26 @@ class RecipesViewModel {
             .subscribe{ [self] recipe in
                 self.recipes.accept(recipe)
             }.disposed(by: disposeBag)
-        recipeRepository.mapRecipeListToModel(recipeList: recipes)
-            .subscribe{
-                [self] element in
-                listItems.accept(element)
-            }.disposed(by: disposeBag)
-            
+        self.recipes
+            .map(mapRecipeListToModel)
+            .bind(to: self.listItems)
+            .disposed(by: disposeBag)
         
-      
+        
+        
+        
         //setup changes from variable 'recipe' and map it into 'listItems'
     }
-
+    
+    func mapRecipeListToModel(recipeList: [Recipe]) -> [RecipesCellViewModel] {
+        var listRecipes: [RecipesCellViewModel] = []
+        print("mapping")
+        recipeList.map{
+            element in
+            let item = RecipesCellViewModel.init(recipesThumnail: element.thumnail, recipesDescription: element.description, recipesTitle: element.name)
+            listRecipes.append(item)
+        }
+      return listRecipes
+    }
+    
 }

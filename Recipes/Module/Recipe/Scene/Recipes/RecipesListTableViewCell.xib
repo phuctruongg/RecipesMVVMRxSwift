@@ -22,6 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="120" height="116"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="TnX-i4-SsZ"/>
+                                    <constraint firstAttribute="height" constant="116" id="lWn-8n-3ks"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="QV3-Bb-VvO">

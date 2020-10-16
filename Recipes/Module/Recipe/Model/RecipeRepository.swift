@@ -27,19 +27,12 @@ class RecipeRepository {
         return Observable.just([])
     }
     
-    func mapRecipeListToModel(recipeList: BehaviorRelay<[Recipe]>) -> Observable<[RecipesCellViewModel]> {
-        print("mapping recipe")
-        var listRecipes: [RecipesCellViewModel] = []
-        recipeList.value.map{
-            element in
-            let item = RecipesCellViewModel.init(recipesThumnail: element.thumnail, recipesDescription: element.description, recipesTitle: element.name)
-            listRecipes.append(item)
-        }
-        return Observable.just(listRecipes)
+    func addRecipe(_ value: Recipe, list: BehaviorRelay<[Recipe]>) -> Observable<Void> {
+        var currentList = list.value
+        currentList.append(value)
+        list.accept(currentList)
+        return Observable.just(())
     }
-        
-    
-//    func addRecipe(_ value: Recipe) -> Observable<Void> { }
 //    func deleteRecipe(_ value: Recipe) -> Observable<Void> { }
 //    func updateRecipe(_ value: Recipe) -> Observable<Void> { }
 

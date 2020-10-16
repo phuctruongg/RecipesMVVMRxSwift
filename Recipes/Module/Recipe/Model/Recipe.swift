@@ -12,5 +12,10 @@ struct Recipe : Decodable {
     let name : String
     let description : String
     let thumnail : String
+    init(recipesThumnail: String, recipesDescription: String, recipesTitle: String) {
+        self.name = recipesTitle
+        self.description = recipesDescription
+        self.thumnail =  recipesThumnail
+    }
 }
 
