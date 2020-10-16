@@ -9,13 +9,15 @@
 import Foundation
 
 struct Recipe : Decodable {
+    let id : String
     let name : String
     let description : String
     let thumnail : String
-    init(recipesThumnail: String, recipesDescription: String, recipesTitle: String) {
+    init(recipesThumnail: String, recipesDescription: String, recipesTitle: String, id :String) {
         self.name = recipesTitle
         self.description = recipesDescription
         self.thumnail =  recipesThumnail
+        self.id = id
     }
 }
 

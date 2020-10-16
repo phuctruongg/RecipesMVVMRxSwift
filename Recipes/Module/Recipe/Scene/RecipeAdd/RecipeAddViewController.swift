@@ -16,7 +16,7 @@ class RecipeAddViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextView!
-    
+    var pos: String!
     var addRecipe = PublishSubject<Recipe>()
     var viewModel: RecipeAddViewModel?
     let disposeBag = DisposeBag()
@@ -33,7 +33,7 @@ class RecipeAddViewController: UIViewController {
             .orEmpty
             .bind(to: viewModel!.descriptiontitleTextField)
             .disposed(by: disposeBag)
-        
+
         titleTextField.rx.text
             .orEmpty
             .bind(to: viewModel!.titleTextField)
@@ -45,10 +45,10 @@ class RecipeAddViewController: UIViewController {
         
         viewModel?.isAdded.asObservable()
         .skip(1)
-            .subscribe{
+            .subscribe{ [self]
             isAdd in
             if(isAdd.element!){
-                self.addRecipe.onNext(Recipe.init(recipesThumnail: "pizza", recipesDescription: self.descriptionTextField.text!, recipesTitle: self.titleTextField.text!))
+                self.addRecipe.onNext(Recipe.init(recipesThumnail: "pizza", recipesDescription: self.descriptionTextField.text!, recipesTitle: self.titleTextField.text!,id: pos))
                 self.showAlert(title: "Notification", message: "Add New Recipe Successfully")
             } else {
                 self.showFailAlert(title: "Error", message: "All field must be fill")

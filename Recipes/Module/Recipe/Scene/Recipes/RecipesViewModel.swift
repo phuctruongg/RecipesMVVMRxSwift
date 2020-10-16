@@ -44,7 +44,7 @@ class RecipesViewModel {
         print("mapping")
         recipeList.map{
             element in
-            let item = RecipesCellViewModel.init(recipesThumnail: element.thumnail, recipesDescription: element.description, recipesTitle: element.name)
+            let item = RecipesCellViewModel.init(recipesThumnail: element.thumnail, recipesDescription: element.description, recipesTitle: element.name, recipesID: element.id)
             listRecipes.append(item)
         }
       return listRecipes

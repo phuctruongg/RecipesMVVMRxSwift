@@ -14,10 +14,12 @@ struct RecipesCellViewModel {
     //Presentation - Content - Header
     var recipesDescription: String?
     var recipesTitle: String?
+    var recipesID : String?
     //Initializer
-    init(recipesThumnail: String, recipesDescription: String, recipesTitle: String) {
+    init(recipesThumnail: String, recipesDescription: String, recipesTitle: String, recipesID: String) {
         self.recipesTitle = recipesTitle
         self.recipesDescription = recipesDescription
         self.recipesThumnail =  recipesThumnail
+        self.recipesID = recipesID
     }
 }

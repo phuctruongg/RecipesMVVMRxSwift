@@ -34,6 +34,20 @@ class RecipeRepository {
         return Observable.just(())
     }
 //    func deleteRecipe(_ value: Recipe) -> Observable<Void> { }
-//    func updateRecipe(_ value: Recipe) -> Observable<Void> { }
-
+    func updateRecipe(_ value: Recipe, list: BehaviorRelay<[Recipe]>, pos: Int) -> Observable<Void> {
+        var currentList = list.value
+        currentList[findPostionOfRecipe(list: list.value, value)] = value
+        list.accept(currentList)
+        return Observable.just(())
+    }
+    
+    func findPostionOfRecipe(list: [Recipe], _ value: Recipe) -> Int{
+        let index = 0
+        for i in 0..<list.count {
+            if(list[i].name == value.name){
+                return i
+            }
+        }
+        return index
+    }
 }

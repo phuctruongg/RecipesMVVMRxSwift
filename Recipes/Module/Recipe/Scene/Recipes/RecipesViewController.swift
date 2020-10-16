@@ -50,33 +50,29 @@ class RecipesViewController: UIViewController {
             let addViewController = segue.destination as? RecipeAddViewController
         {
             addViewController.viewModel = RecipeAddViewModel()
+            addViewController.pos = String(tableView.visibleCells.count)
             addViewController.addRecipe.asObserver().subscribe{ [self]
                 element in
                 viewmodel.recipeRepository.addRecipe(element, list: viewmodel.recipes)
             }.disposed(by: disposeBag)
         }
 
-//        if segue.identifier == "friendToUpdateFriend",
-//            let destinationViewController = segue.destination as? FriendViewController,
-//            let viewModel = selectFriendPayload.read()
-//        {
-//            destinationViewController.viewModel = UpdateFriendViewModel(friendCellViewModel: viewModel)
-//            destinationViewController.updateFriends.asObserver().subscribe(onNext: { [weak self] () in
-//                self?.viewModel.getFriends()
-//                }, onCompleted: {
-//                    print("ONCOMPLETED")
-//            }).disposed(by: destinationViewController.disposeBag)
-//        }
+        if segue.identifier == "Detail" {
+               guard let object = sender as? RecipesListTableViewCell else { return }
+            let dvc = segue.destination as! RecipeDetailViewController
+            dvc.recipeIntent = object
+            dvc.viewModel = RecipeDetailViewModel()
+            dvc.updateRecipe.asObserver().subscribe{ [self]
+                element in
+                viewmodel.recipeRepository.updateRecipe(element,list: viewmodel.recipes, pos: 1)
+            }.disposed(by: disposeBag)
+           }
     }
     
     
     
     func routeToDetail(intent : RecipesListTableViewCell){
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Recipe", bundle: nil)
-        let detailView = storyBoard.instantiateViewController(withIdentifier: "Detail") as! RecipeDetailViewController
-        detailView.modalPresentationStyle = .fullScreen
-        detailView.recipeIntent = intent
-        self.navigationController?.pushViewController(detailView, animated: true)
+        self.performSegue(withIdentifier: "Detail", sender: intent)
 
     }
 }
