@@ -20,7 +20,7 @@ class RecipeAddViewModel {
     var isAdded = BehaviorRelay<Bool>(value: false)
     private let disposeBag = DisposeBag()
     
-    let view = RecipeAddViewController()
+    var view = RecipeAddViewController()
     
     
     

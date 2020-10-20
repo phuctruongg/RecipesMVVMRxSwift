@@ -14,6 +14,7 @@ PODS:
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
   - SwiftyJSON (5.0.0)
+  - Swinject (2.7.1)
 
 DEPENDENCIES:
   - RxCocoa (~> 5.0.0)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - RxGesture
   - RxSwift (~> 5.0.0)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - Swinject
 
 SPEC REPOS:
   trunk:
@@ -30,6 +32,7 @@ SPEC REPOS:
     - RxGesture
     - RxRelay
     - RxSwift
+    - Swinject
 
 EXTERNAL SOURCES:
   SwiftyJSON:
@@ -48,7 +51,8 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SwiftyJSON: f0574c07d8ca1644050db687067209e3033a89a0
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: af353d3f7cce20a5c233238a1744557e2f7e0328
+PODFILE CHECKSUM: ff737b51c7939f710400b95df704ca83ce23ad93
 
 COCOAPODS: 1.9.3

@@ -10,15 +10,18 @@ import RxSwift
 import RxCocoa
 
 class RecipesViewController: UIViewController {
-    
+   
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     //
     private let disposeBag = DisposeBag()
     var viewmodel = RecipesViewModel()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewmodel.transform()
+        viewmodel.view = self
         bindTableView()
         self.title = "List Recipe"
     }
@@ -29,50 +32,55 @@ class RecipesViewController: UIViewController {
     }
         
     func bindTableView() {
+       
         tableView.dataSource = nil
         tableView.register(UINib(nibName: "RecipesListTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipesListTableViewCell")
         // Catch event when select
-        tableView.rx.itemSelected
-          .subscribe(onNext: { [weak self] indexPath in
-            let cell = self?.tableView.cellForRow(at: indexPath) as? RecipesListTableViewCell
-            self!.routeToDetail(intent: cell!)
-          }).disposed(by: disposeBag)
+        tableView.rx.modelSelected(RecipesCellViewModel.self)
+                   .subscribe(onNext: { [weak self] recipe in
+                       guard let self = self else { return }
+                    self.routeToRecipeDetail(recipe: Recipe.init(recipesThumnail: recipe.recipesThumnail!, recipesDescription: recipe.recipesDescription!, recipesTitle: recipe.recipesTitle!, id: recipe.recipesID!))
+                   }).disposed(by: disposeBag)
+                   
+      
+            
         // Loading list item
         viewmodel.listItems.bind(to: tableView.rx.items(cellIdentifier: "RecipesListTableViewCell")) { index, model, cell in
             let cells = cell as! RecipesListTableViewCell
             cells.viewModel = model
         }
         .disposed(by: disposeBag)
+        
+        // add new item
+        addButton.rx.tap.asObservable()
+            .bind(to: viewmodel.taptoAdd)
+            .disposed(by: disposeBag)
+        
     }
     
-    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Add",
-            let addViewController = segue.destination as? RecipeAddViewController
-        {
-            addViewController.viewModel = RecipeAddViewModel()
-            addViewController.pos = String(tableView.visibleCells.count)
-            addViewController.addRecipe.asObserver().subscribe{ [self]
-                element in
-                viewmodel.recipeRepository.addRecipe(element, list: viewmodel.recipes)
-            }.disposed(by: disposeBag)
-        }
-
-        if segue.identifier == "Detail" {
-               guard let object = sender as? RecipesListTableViewCell else { return }
-            let dvc = segue.destination as! RecipeDetailViewController
-            dvc.recipeIntent = object
-            dvc.viewModel = RecipeDetailViewModel()
-            dvc.updateRecipe.asObserver().subscribe{ [self]
-                element in
-                viewmodel.recipeRepository.updateRecipe(element,list: viewmodel.recipes, pos: 1)
-            }.disposed(by: disposeBag)
-           }
-    }
-    
-    
-    
-    func routeToDetail(intent : RecipesListTableViewCell){
-        self.performSegue(withIdentifier: "Detail", sender: intent)
-
-    }
+   
 }
+
+extension RecipesViewController: RecipesViewType {
+    func routeToRecipeDetail(recipe: Recipe) {
+        let screen = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! RecipeDetailViewController
+        screen.editRecipe.bind(to: viewmodel.didEditRecipe)
+        screen.recipeIntent = recipe
+        self.navigationController?.pushViewController(screen, animated: true)
+    }
+    
+    func routeToAddRecipe() {
+      //  let screen = DI.container.resolve(RecipesAddViewControllerType.self)!
+        let screen = self.storyboard?.instantiateViewController(withIdentifier: "Add") as! RecipeAddViewController
+        screen.addRecipe.bind(to: viewmodel.didAddRecipe)
+        screen.pos = String(tableView.visibleCells.count)
+        self.navigationController?.pushViewController(screen, animated: true)
+    }
+    
+    func routeToUpdateRecipe(recipe: Recipe) {
+        print("update")
+    }
+    
+   
+}
+

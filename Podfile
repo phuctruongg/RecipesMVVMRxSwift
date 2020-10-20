@@ -12,6 +12,7 @@ target 'Recipes' do
     pod 'RxCocoa', '~> 5.0.0'
 pod 'RxDataSources', '~> 4.0'
 pod "RxGesture"
+pod 'Swinject'
 pod 'SwiftyJSON', :git =>'https://github.com/SwiftyJSON/SwiftyJSON.git'
  
 
