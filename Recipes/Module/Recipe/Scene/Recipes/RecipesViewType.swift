@@ -13,7 +13,6 @@ import RxCocoa
 protocol RecipesViewType : NSObjectProtocol {
     func routeToRecipeDetail(recipe: Recipe)
     func routeToAddRecipe()
-    func routeToUpdateRecipe(recipe: Recipe)
 }
 
 

@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AY9-PX-gLZ">
-                                <rect key="frame" x="0.0" y="108" width="414" height="754"/>
+                                <rect key="frame" x="0.0" y="163" width="414" height="714"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipesListTableViewCell" id="NUD-S4-bOC">
@@ -46,14 +46,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="3E1-aM-5Wa">
+                                <rect key="frame" x="10" y="100" width="394" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="AY9-PX-gLZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="1fp-cx-H7g"/>
-                            <constraint firstItem="AY9-PX-gLZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="84e-06-pww"/>
-                            <constraint firstItem="AY9-PX-gLZ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dzj-bI-CcV"/>
-                            <constraint firstItem="AY9-PX-gLZ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="yhw-lu-rd5"/>
+                            <constraint firstItem="AY9-PX-gLZ" firstAttribute="top" secondItem="3E1-aM-5Wa" secondAttribute="bottom" constant="7" id="Aqa-nQ-Nq5"/>
+                            <constraint firstItem="AY9-PX-gLZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BEQ-8A-rwh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3E1-aM-5Wa" secondAttribute="trailing" constant="10" id="NcE-wf-vxd"/>
+                            <constraint firstItem="AY9-PX-gLZ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="d9i-Xf-zcb"/>
+                            <constraint firstItem="3E1-aM-5Wa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="eAk-d6-L4c"/>
+                            <constraint firstItem="3E1-aM-5Wa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="kv5-v5-ncD"/>
+                            <constraint firstAttribute="bottom" secondItem="AY9-PX-gLZ" secondAttribute="bottom" constant="19" id="oTZ-Ln-Jq4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="I9J-NC-1z1">
@@ -65,6 +72,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="Gcw-4Q-cvb" id="BNm-dC-CYJ"/>
+                        <outlet property="searchBar" destination="3E1-aM-5Wa" id="bxV-ma-Jr6"/>
                         <outlet property="tableView" destination="AY9-PX-gLZ" id="dsB-oY-eqo"/>
                         <segue destination="F3P-C7-FRN" kind="show" identifier="Detail" id="VEZ-fF-VEQ"/>
                     </connections>
@@ -263,8 +271,11 @@
                             <constraint firstItem="8DM-ri-SXq" firstAttribute="trailing" secondItem="cM8-iL-lb7" secondAttribute="trailing" constant="50" id="nP2-F5-skj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="v4B-qe-oiG"/>
+                    <navigationItem key="navigationItem" id="v4B-qe-oiG">
+                        <barButtonItem key="rightBarButtonItem" title="Delete" id="Qdg-1h-IjL"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="deleteButtonTap" destination="Qdg-1h-IjL" id="oon-p3-QKB"/>
                         <outlet property="editButtonTap" destination="tWC-Sy-QUh" id="1Fg-Yi-PLF"/>
                         <outlet property="imageRecipe" destination="1hU-BK-N3Z" id="tcw-fi-FYl"/>
                         <outlet property="textFieldDescription" destination="fZj-DZ-L3W" id="Dyi-wu-xeF"/>

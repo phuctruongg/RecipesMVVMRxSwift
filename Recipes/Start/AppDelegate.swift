@@ -48,6 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return storyboard.instantiateViewController(withIdentifier: "Add")
             }
             
+        
+        DI.container.register(RecipesDetailViewControllerType.self) { r -> RecipesDetailViewControllerType in
+                return storyboard.instantiateViewController(withIdentifier: "Detail")
+            }
+            
          
             
         

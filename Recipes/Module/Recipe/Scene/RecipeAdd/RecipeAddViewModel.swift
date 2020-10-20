@@ -39,16 +39,12 @@ class RecipeAddViewModel {
     
         titleTextField
             .subscribe(
-                onNext: { content in
-                    
-                }
+                onNext: { content in}
         ).disposed(by: disposeBag)
         
         descriptiontitleTextField
             .subscribe(
-                onNext: { content in
-                    
-                }
+                onNext: { content in}
         ).disposed(by: disposeBag)
     }
 }

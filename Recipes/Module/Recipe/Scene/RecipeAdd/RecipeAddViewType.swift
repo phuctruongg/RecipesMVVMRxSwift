@@ -12,7 +12,8 @@ import RxSwift
 import RxCocoa
 
 protocol RecipeAddViewType : NSObjectProtocol {
-    
+    var didAddRecipe : PublishSubject <Recipe> { get}
+    var pos: String { get set}
 }
 
 
@@ -20,3 +21,6 @@ protocol RecipeAddViewType : NSObjectProtocol {
 typealias RecipesAddViewControllerType = UIViewController & RecipeAddViewType
 
 
+struct AddIntent {
+    let selectedRecipe: Recipe
+}

@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 
 class RecipeAddViewController: UIViewController, RecipeAddViewType  {
+    var pos: String = ""
+    
    
     
     
@@ -19,7 +21,6 @@ class RecipeAddViewController: UIViewController, RecipeAddViewType  {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextView!
   
-    var pos: String!
     var addRecipe = PublishSubject<Recipe>()
     var viewModel: RecipeAddViewModel?
     let disposeBag = DisposeBag()
@@ -41,7 +42,7 @@ class RecipeAddViewController: UIViewController, RecipeAddViewType  {
 
         titleTextField.rx.text
             .orEmpty
-            .bind(to: viewModel!.titleTextField)
+            .bind(to:  viewModel!.titleTextField)
             .disposed(by: disposeBag)
 
         saveButton.rx.tap.asObservable()
@@ -69,7 +70,7 @@ class RecipeAddViewController: UIViewController, RecipeAddViewType  {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [self]_ in
             _ = self.navigationController?.popViewController(animated: true)
-            self.addRecipe.onNext( Recipe.init(recipesThumnail: "pizza", recipesDescription: self.descriptionTextField.text!, recipesTitle: self.titleTextField.text!,id: pos))
+            self.didAddRecipe.onNext( Recipe.init(recipesThumnail: "pizza", recipesDescription: self.descriptionTextField.text!, recipesTitle: self.titleTextField.text!,id: pos))
         }))
         self.present(alert, animated: true, completion: nil)
     }

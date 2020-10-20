@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Recipe : Decodable,Encodable {
+struct Recipe : Decodable,Encodable,Equatable {
     let id : String
     let name : String
     let description : String

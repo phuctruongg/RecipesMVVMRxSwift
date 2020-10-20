@@ -27,6 +27,7 @@
 		18AF12C8253D7F7500A89C64 /* DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AF12C7253D7F7500A89C64 /* DI.swift */; };
 		18C5915D253D9DE500ECAAE7 /* RecipeAddViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C5915C253D9DE500ECAAE7 /* RecipeAddViewType.swift */; };
 		18C5916E253E82BB00ECAAE7 /* recipesList.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C5916D253E82BA00ECAAE7 /* recipesList.json */; };
+		18C59193253ED46300ECAAE7 /* RecipeDetailViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C59192253ED46200ECAAE7 /* RecipeDetailViewType.swift */; };
 		18EB0DAA2538084A00A4974F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EB0DA92538084A00A4974F /* Network.swift */; };
 		18EB0E0A25381B5400A4974F /* pizza.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18EB0E0925381B5300A4974F /* pizza.jpg */; };
 		18EB0E322538494400A4974F /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EB0E312538494400A4974F /* RecipeDetailViewController.swift */; };
@@ -80,6 +81,7 @@
 		18AF12C7253D7F7500A89C64 /* DI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DI.swift; sourceTree = "<group>"; };
 		18C5915C253D9DE500ECAAE7 /* RecipeAddViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAddViewType.swift; sourceTree = "<group>"; };
 		18C5916D253E82BA00ECAAE7 /* recipesList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipesList.json; sourceTree = "<group>"; };
+		18C59192253ED46200ECAAE7 /* RecipeDetailViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewType.swift; sourceTree = "<group>"; };
 		18EB0DA92538084A00A4974F /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		18EB0E0925381B5300A4974F /* pizza.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pizza.jpg; path = ../../../pizza.jpg; sourceTree = "<group>"; };
 		18EB0E312538494400A4974F /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeDetailViewController.swift; path = ../../../../../../Recipes/Recipes/NetWork/RecipeDetailViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			children = (
 				18EB0E312538494400A4974F /* RecipeDetailViewController.swift */,
 				18EB0E362538494F00A4974F /* RecipeDetailViewModel.swift */,
+				18C59192253ED46200ECAAE7 /* RecipeDetailViewType.swift */,
 			);
 			path = RecipeDetail;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				18651A1C253706AC00DE5236 /* SceneDelegate.swift in Sources */,
 				18C5915D253D9DE500ECAAE7 /* RecipeAddViewType.swift in Sources */,
 				186A159825393A3C004D7FBA /* RecipeAddViewController.swift in Sources */,
+				18C59193253ED46300ECAAE7 /* RecipeDetailViewType.swift in Sources */,
 				18651AB02537544100DE5236 /* RecipesListTableViewCell.swift in Sources */,
 				18EB0E322538494400A4974F /* RecipeDetailViewController.swift in Sources */,
 				18651BB02538039400DE5236 /* Recipe.swift in Sources */,
